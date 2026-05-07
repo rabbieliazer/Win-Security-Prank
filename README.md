@@ -10,10 +10,12 @@ A streamlined simulation tool that mimics a high-priority Windows Security Warni
 *   **Zero-Dependency**: No installation required; runs on any modern Windows environment (7, 10, 11).
 
 ## 🛠️ How It Works
-The script uses a VBScript wrapper to execute a PowerShell command string. By utilizing the `[System.Windows.Forms.MessageBox]` class, it creates a modal dialog that:
-1.  Plays the "Critical Stop" system sound.
-2.  Displays the Red "X" Critical icon.
-3.  Waits for user input before proceeding to the final "Notice" box.
+1. **Launch**: The script initiates a "Critical" system dialog box using the `System.Windows.Forms` library.
+2. **The Interface**: The user is presented with a "Windows Security Warning" containing three options: **Yes**, **No**, and **Cancel**.
+3. **The "Close" Logic**: 
+   - Clicking the **"X"** in the top-right corner acts as a "Cancel" trigger.
+   - Because the script uses sequential command execution, any interaction (Yes, No, Cancel, or Close) will automatically dismiss the first window and trigger the second "Notice" dialog.
+4. **The Reveal**: A final "Notice" box appears with the "Just a joke!" message, using the standard blue Information icon.
 
 ## 📂 Installation & Usage
 1.  **Download**: Copy the `Warning.vbs` file from this repository.
