@@ -45,7 +45,7 @@ To kill the script while it is waiting for input:
 ---
 
 ## ⚖️ License
-This project is protected under a **Custom Non-Commercial License** by Tosh Developers.
+This project is protected under a **Custom Non-Commercial License**.
 
 *   ✅ **Allowed**: Sharing, pranking, and educational use.
 *   ❌ **Prohibited**: Selling this script or using it for commercial profit without permission.
