@@ -42,11 +42,15 @@ To kill the script while it is waiting for input:
 2.  Locate **Windows PowerShell**.
 3.  Right-click and select **End Task**.
 
-## ⚖️ License
-This project is licensed under **CC BY-NC 4.0** (Creative Commons Attribution-NonCommercial).
+---
 
-*   **Sharing**: You are free to share and use this script for pranks and educational purposes.
-*   **Commercial Use**: You are **STRICTLY PROHIBITED** from selling this script or using it for commercial gain without explicit written permission from me.
+## ⚖️ License
+This project is protected under a **Custom Non-Commercial License** by Tosh Developers.
+
+*   ✅ **Allowed**: Sharing, pranking, and educational use.
+*   ❌ **Prohibited**: Selling this script or using it for commercial profit without permission.
+
+For full terms, please see the [LICENSE](./LICENSE) file.
 
 ## 📢 Disclaimer
 This project is for **educational and entertainment purposes only**. Do not use this script to cause distress or on systems where you do not have explicit permission. we are not responsible for any misuse of this software.
