@@ -1,5 +1,4 @@
 # Win-Alert-Sim
-Developed by **Tosh Developers**
 
 A streamlined simulation tool that mimics a high-priority Windows Security Warning. This project demonstrates how to leverage VBScript and PowerShell to interact with native Windows UI elements (`System.Windows.Forms`) without leaving a permanent footprint on the system.
 
