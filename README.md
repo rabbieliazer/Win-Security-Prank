@@ -43,7 +43,10 @@ To kill the script while it is waiting for input:
 3.  Right-click and select **End Task**.
 
 ## ⚖️ License
-This project is licensed under the **MIT License**.
+This project is licensed under **CC BY-NC 4.0** (Creative Commons Attribution-NonCommercial).
+
+*   **Sharing**: You are free to share and use this script for pranks and educational purposes.
+*   **Commercial Use**: You are **STRICTLY PROHIBITED** from selling this script or using it for commercial gain without explicit written permission from **Tosh Developers**.
 
 ## 📢 Disclaimer
 This project is for **educational and entertainment purposes only**. Do not use this script to cause distress or on systems where you do not have explicit permission. we are not responsible for any misuse of this software.
