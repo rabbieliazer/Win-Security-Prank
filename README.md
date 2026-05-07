@@ -44,4 +44,4 @@ To kill the script while it is waiting for input:
 This project is licensed under the **MIT License**.
 
 ## 📢 Disclaimer
-This project is for **educational and entertainment purposes only**. Do not use this script to cause distress or on systems where you do not have explicit permission. **Tosh Developers** is not responsible for any misuse of this software.
+This project is for **educational and entertainment purposes only**. Do not use this script to cause distress or on systems where you do not have explicit permission. we are not responsible for any misuse of this software.
