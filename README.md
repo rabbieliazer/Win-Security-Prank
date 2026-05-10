@@ -1,56 +1,39 @@
 # Win-Alert-Sim
 
-A streamlined simulation tool that mimics a high-priority Windows Security Warning. This project demonstrates how to leverage VBScript and PowerShell to interact with native Windows UI elements (`System.Windows.Forms`) without leaving a permanent footprint on the system.
+A professional-grade collection of security alert simulations. This library uses VBScript and PowerShell to create convincing UI forms that mimic major antivirus providers and native Windows system alerts for educational demonstrations and harmless pranks.
 
-## 🚀 Features
-*   **Native Windows UI**: Uses standard system dialog boxes, icons, and sounds for 100% authenticity.
-*   **Stealth Execution**: Runs in a hidden background process via `WScript.Shell`.
-*   **Interactive Logic**: Includes a "Take Action" prompt with native **Yes/No** buttons.
-*   **Universal Reveal**: Triggers the "Just a joke!" punchline regardless of which button the user clicks (Yes, No, or Close).
-*   **Zero-Dependency**: No installation required; runs on any modern Windows environment (7, 10, 11).
+## 🎨 Available Themes & Branding
+
+| Brand | Visual Style | Status | UI Type |
+| :---: | :--- | :---: | :--- |
+| <img src="https://simpleicons.org/icons/microsoftdefender.svg" width="20" height="20"> | **Microsoft Defender** | `Active` | Custom Form (Blue/White) |
+| <img src="https://simpleicons.org/icons/mcafee.svg" width="20" height="20"> | **McAfee** | `Active` | Custom Form (Red/White) |
+| <img src="https://simpleicons.org/icons/avast.svg" width="20" height="20"> | **Avast** | `Active` | Custom Form (Purple/Orange) |
+| <img src="https://simpleicons.org/icons/norton.svg" width="20" height="20"> | **Norton** | `Active` | Custom Form (Yellow/Black) |
+| <img src="https://simpleicons.org/icons/windows.svg" width="20" height="20"> | **Windows System** | `Active` | Toast Notification |
+| <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" width="20" height="20"> | **Classic Windows** | `Active` | Native MessageBox |
 
 ## 🛠️ How It Works
-1. **Launch**: The script initiates a "Critical" system dialog box using the `System.Windows.Forms` library.
-2. **The Interface**: The user is presented with a "Windows Security Warning" containing three options: **Yes**, **No**, and **Cancel**.
-3. **The "Close" Logic**: 
-   - Clicking the **"X"** in the top-right corner acts as a "Cancel" trigger.
-   - Because the script uses sequential command execution, any interaction (Yes, No, Cancel, or Close) will automatically dismiss the first window and trigger the second "Notice" dialog.
-4. **The Reveal**: A final "Notice" box appears with the "Just a joke!" message, using the standard blue Information icon.
+These scripts utilize a VBScript wrapper to execute PowerShell commands silently. 
+1. **Stealth**: No command prompt window appears during execution.
+2. **Topmost**: Windows are set to stay above all other applications.
+3. **Interaction**: Every script includes an action button that triggers the reveal.
+4. **The Reveal**: Regardless of the button clicked (including close), a final "Just a joke!" notice appears.
 
 ## 📂 Installation & Usage
-1.  **Download**: Copy the `Warning.vbs` file from this repository.
-2.  **Execute**: Double-click the file to launch the simulation.
-3.  **Interact**: Click either button to dismiss the alert and see the reveal.
+1. Download the `.vbs` file of your choice from this repository.
+2. Double-click the file to execute the simulation.
+3. To terminate a script manually, end the `powershell.exe` process in **Task Manager**.
 
 ## ⚠️ Troubleshooting
-
-### "Windows protected your PC" (SmartScreen)
-Because this is a `.vbs` script downloaded from the web, Windows may flag it as unrecognized.
-*   **Solution**: Click **"More info"** and then select **"Run anyway"**.
-
-### File opens in Notepad
-If the script opens as a text file instead of running:
-*   **Solution**: Right-click `Warning.vbs`, select **"Open with..."**, and choose **"Microsoft ® Windows Based Script Host"**.
-
-### Antivirus False Positives
-Some security software flags scripts that call PowerShell as a "heuristic" threat. 
-*   **Note**: This script is entirely harmless. It does not access files, modify the registry, or connect to the internet. You may need to add a temporary exclusion to run it.
-
-### Manual Termination
-To kill the script while it is waiting for input:
-1.  Open **Task Manager** (`Ctrl + Shift + Esc`).
-2.  Locate **Windows PowerShell**.
-3.  Right-click and select **End Task**.
-
----
+* **SmartScreen**: Windows may block unrecognized `.vbs` files. Click **"More Info"** -> **"Run Anyway"**.
+* **Focus Assist**: If `NotificationPrank.vbs` does not appear, ensure "Do Not Disturb" (Focus Assist) is turned off.
+* **Heuristics**: Some security software may flag scripts that call PowerShell. These scripts are 100% harmless visual simulations.
 
 ## ⚖️ License
-This project is protected under a **Custom Non-Commercial License**.
+This project is licensed under a **Custom Non-Commercial License**.
+* **Personal Use**: Allowed (Sharing with friends/family for pranks).
+* **Commercial Use**: **STRICTLY PROHIBITED**. You may not sell these scripts or include them in paid packages without permission.
 
-*   ✅ **Allowed**: Sharing, pranking, and educational use.
-*   ❌ **Prohibited**: Selling this script or using it for commercial profit without permission.
-
-For full terms, please see the [LICENSE](./LICENSE) file.
-
-## 📢 Disclaimer
-This project is for **educational and entertainment purposes only**. Do not use this script to cause distress or on systems where you do not have explicit permission. we are not responsible for any misuse of this software.
+---
+*Disclaimer: For educational and entertainment purposes only.*
