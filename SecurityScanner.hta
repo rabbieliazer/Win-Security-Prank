@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>Windows Security Center</title>
+<hta:application 
+    id="oPrank"
+    border="thin"
+    caption="yes"
+    showintaskbar="yes"
+    singleinstance="yes"
+    sysmenu="yes"
+    windowstate="normal"
+    scroll="no"
+    maximizebutton="no"
+    minimizebutton="no"
+>
+
+<style>
+    /* 1. ALLOW CONTENT TO FILL THE WINDOW AUTOMATICALLY */
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        overflow: hidden;
+    }
+
+    /* 2. ADJUST PADDING TO ACCOUNT FOR BORDERS */
+    #wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 30px;
+        box-sizing: border-box;
+    }
+
+    .progress-container {
+        width: 100%;
+        background-color: #ddd;
+        border-radius: 5px;
+        margin: 20px 0;
+        height: 30px;
+        display: none;
+    }
+    .progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: #0078d4;
+        border-radius: 5px;
+    }
+
+    .btn-row { 
+        position: absolute;
+        bottom: 30px; 
+        right: 30px;
+    }
+
+    button {
+        padding: 10px 20px;
+        margin-left: 10px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .btn-primary { background: #0078d4; color: white; border: none; }
+    .btn-secondary { background: #e1e1e1; border: 1px solid #adadad; }
+
+    .dark-mode { background-color: #1a1a1a !important; color: white !important; }
+    .card {
+        background: #2d2d2d;
+        padding: 20px;
+        border-radius: 10px;
+        border: 2px solid #d9534f;
+        text-align: center;
+    }
+</style>
+
+<script language="VBScript">
+    Dim progressCounter
+    
+    Sub Window_OnLoad
+        ' Set one size and stick to it
+        window.ResizeTo 550, 500
+        window.MoveTo (window.screen.width - 550) / 2, (window.screen.height - 500) / 2
+        ' Enforce size every 100ms to stop shrinking
+        window.SetInterval "FixSize", 100
+    End Sub
+
+    Sub FixSize
+        window.ResizeTo 550, 500
+    End Sub
+
+    Sub StartScan
+        document.getElementById("initial_screen").style.display = "none"
+        document.getElementById("scan_screen").style.display = "block"
+        document.getElementById("p_bar_container").style.display = "block"
+        progressCounter = 0
+        UpdateProgress
+    End Sub
+
+    Sub UpdateProgress
+        If progressCounter <= 100 Then
+            document.getElementById("p_bar").style.width = progressCounter & "%"
+            ' Fixed the innerHTML error from your screenshot
+            document.getElementById("status_text").innerHTML = "Scanning: C:\Windows\System32\drivers\file_" & (progressCounter * 7) & ".sys"
+            progressCounter = progressCounter + 2
+            window.SetTimeout "UpdateProgress", 100 
+        Else
+            ShowError
+        End If
+    End Sub
+
+    Sub ShowError
+        document.getElementById("scan_screen").style.display = "none"
+        document.getElementById("error_screen").style.display = "block"
+    End Sub
+
+    Sub DownloadPhase
+        document.body.className = "dark-mode"
+        document.getElementById("error_screen").style.display = "none"
+        document.getElementById("destroyer_screen").style.display = "block"
+    End Sub
+
+    Sub RevealJoke
+        document.getElementById("destroyer_screen").style.display = "none"
+        document.getElementById("joke_screen").style.display = "block"
+    End Sub
+
+    Sub CloseApp
+        MsgBox "Just a joke! Your PC is safe.", 64, "Security Update"
+        window.Close()
+    End Sub
+</script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="initial_screen">
+        <h2 style="color:#d9534f;">⚠️ Security Alert</h2>
+        <p>A high-risk exploit has been detected on this PC.</p>
+        <p><b>Threat:</b> Trojan:Win32/ScriptPrank.A</p>
+        <div class="btn-row">
+            <button class="btn-secondary" onclick="CloseApp()">Cancel</button>
+            <button class="btn-primary" onclick="StartScan()">Scan Now</button>
+        </div>
+    </div>
+
+    <div id="scan_screen" style="display:none;">
+        <h2>System Scan</h2>
+        <p id="status_text">Initializing...</p>
+        <div class="progress-container" id="p_bar_container">
+            <div id="p_bar" class="progress-bar"></div>
+        </div>
+    </div>
+
+    <div id="error_screen" style="display:none;">
+        <h2 style="color:#d9534f;">❌ Scan Failed</h2>
+        <p>The system was unable to remove the threat automatically.</p>
+        <div class="btn-row">
+            <button class="btn-secondary" onclick="CloseApp()">No</button>
+            <button class="btn-primary" onclick="DownloadPhase()">Yes, Fix Now</button>
+        </div>
+    </div>
+
+    <div id="destroyer_screen" style="display:none;">
+        <div class="card">
+            <h2 style="color:white;">Trojan Destroyer</h2>
+            <p style="color:white;">Ready to scrub infected registry keys.</p>
+            <button style="padding:15px; background:#d9534f; color:white; border:none;" onclick="RevealJoke()">DOWNLOAD NOW</button>
+        </div>
+    </div>
+
+    <div id="joke_screen" style="display:none; text-align:center;">
+        <h1>😜 JUST A JOKE!</h1>
+        <p>No virus found. You've been pranked!</p>
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueW8wd29ueXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif" width="200">
+        <div class="btn-row">
+            <button class="btn-primary" style="background:#4CAF50;" onclick="window.close()">Finish & Close</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
