@@ -5,7 +5,7 @@ Set shell = CreateObject("WScript.Shell")
 Set fso = CreateObject("Scripting.FileSystemObject")
 tempFolder = shell.ExpandEnvironmentStrings("%TEMP%")
 
-' --- 1. THE INITIAL OFFICIAL ALERT (REMOVED "PRANK") ---
+' --- 1. THE INITIAL OFFICIAL ALERT ---
 response = MsgBox("Windows Security has detected a high-risk Trojan on this PC." & vbCrLf & vbCrLf & _
            "Threat: Trojan:Win32/Agent.AES-Exploit" & vbCrLf & _
            "Action Recommended: Run Full Scan immediately.", _
@@ -13,7 +13,7 @@ response = MsgBox("Windows Security has detected a high-risk Trojan on this PC."
 
 ' If user clicks "Cancel" 
 If response = 2 Then
-    MsgBox "Just a joke! Your PC is safe. :-)", 64, "Gotcha!"
+    MsgBox "Just a joke! You have been pranked. Your PC is safe! :-)", 64, "Gotcha!"
     WScript.Quit
 End If
 
@@ -23,9 +23,9 @@ Set htaFile = fso.CreateTextFile(htaPath, True)
 
 htaFile.WriteLine "<html><head><title>Windows Security Scan</title>"
 htaFile.WriteLine "<hta:application windowstate='normal' border='thin' maximizebutton='no' minimizebutton='no' sysmenu='no' scroll='no' singleinstance='yes'>"
-htaFile.WriteLine "<style>body{font-family:'Segoe UI',sans-serif; background:#f0f0f0; margin:20px;}"
+htaFile.WriteLine "<style>body{font-family:'Segoe UI',sans-serif; background:#f0f0f0; margin:20px; overflow:hidden;}"
 htaFile.WriteLine ".bar-bg{width:100%; background:#ddd; height:20px; border-radius:10px; overflow:hidden; margin-top:10px;}"
-htaFile.WriteLine ".bar-fill{width:0%; background:#0078d4; height:100%;}"
+htaFile.WriteLine ".bar-fill{width:0%; background:#0078d4; height:100%; transition: width 0.1s;}"
 htaFile.WriteLine "</style></head><body onload='move()'>"
 htaFile.WriteLine "<h3>Scanning System Files...</h3>"
 htaFile.WriteLine "<p id='status'>Initializing scan engine...</p>"
@@ -36,9 +36,12 @@ htaFile.WriteLine "else{p++; elem.style.width=p+'%'; if(p%10==0){document.getEle
 htaFile.WriteLine "</body></html>"
 htaFile.Close
 
-' Run the scan window and wait
-shell.Run htaPath, 1, True
-fso.DeleteFile htaPath 
+' FIX: Prevent "Unable to wait for process" error
+On Error Resume Next
+shell.Run htaPath, 1, True 
+On Error GoTo 0
+
+If fso.FileExists(htaPath) Then fso.DeleteFile htaPath 
 
 ' --- 3. THE "TROJAN DETECTED" PROMPT ---
 response = MsgBox("SCAN COMPLETE: Trojan.Win32.Generic Detected!" & vbCrLf & _
@@ -48,9 +51,8 @@ response = MsgBox("SCAN COMPLETE: Trojan.Win32.Generic Detected!" & vbCrLf & _
 
 ' --- 4. THE JOKE LOGIC ---
 If response = 7 Then ' Clicked NO
-    MsgBox "Just a joke! Your PC is fine.", 64, "Gotcha!"
+    MsgBox "Just a joke! You have been pranked. Your PC is perfectly fine.", 64, "Gotcha!"
 Else ' Clicked YES
-    ' Generate the Dark-Themed HTML from before
     htmlPath = tempFolder & "\destroyer_tool.html"
     Set outFile = fso.CreateTextFile(htmlPath, True)
     
@@ -65,6 +67,7 @@ Else ' Clicked YES
     outFile.WriteLine "<button onclick='prank()'>DOWNLOAD DESTROYER</button></div>"
     outFile.WriteLine "<div id='joke' style='display:none;'> <h1 style='font-size:70px;'>😂</h1>"
     outFile.WriteLine "<h1 style='color:#5cb85c;'>JUST A JOKE!</h1>"
+    outFile.WriteLine "<h2 style='color:white;'>You have been pranked!</h2>"
     outFile.WriteLine "<img src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueW8wd29ueXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif' width='350'></div>"
     outFile.WriteLine "<script>function prank(){document.getElementById('ui').style.display='none'; document.getElementById('joke').style.display='block';}</script>"
     outFile.WriteLine "</body></html>"
