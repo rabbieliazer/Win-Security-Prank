@@ -1,7 +1,8 @@
 <html>
 <head>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Windows Security Center</title>
-<hta:application 
+<hta:application
     id="oPrank"
     border="thin"
     caption="yes"
@@ -42,17 +43,19 @@
         margin: 20px 0;
         height: 30px;
         display: none;
+        overflow: hidden;
     }
     .progress-bar {
         width: 0%;
         height: 100%;
         background-color: #0078d4;
         border-radius: 5px;
+        transition: width 0.2s ease-in-out;
     }
 
-    .btn-row { 
+    .btn-row {
         position: absolute;
-        bottom: 30px; 
+        bottom: 30px;
         right: 30px;
     }
 
@@ -78,17 +81,14 @@
 
 <script language="VBScript">
     Dim progressCounter
-    
-    Sub Window_OnLoad
-        ' Set one size and stick to it
-        window.ResizeTo 550, 500
-        window.MoveTo (window.screen.width - 550) / 2, (window.screen.height - 500) / 2
-        ' Enforce size every 100ms to stop shrinking
-        window.SetInterval "FixSize", 100
-    End Sub
 
-    Sub FixSize
-        window.ResizeTo 550, 500
+    Sub Window_OnLoad
+        ' Set size and center window
+        Dim w, h
+        w = 550
+        h = 500
+        window.ResizeTo w, h
+        window.MoveTo (window.screen.width - w) / 2, (window.screen.height - h) / 2
     End Sub
 
     Sub StartScan
@@ -102,10 +102,9 @@
     Sub UpdateProgress
         If progressCounter <= 100 Then
             document.getElementById("p_bar").style.width = progressCounter & "%"
-            ' Fixed the innerHTML error from your screenshot
             document.getElementById("status_text").innerHTML = "Scanning: C:\Windows\System32\drivers\file_" & (progressCounter * 7) & ".sys"
             progressCounter = progressCounter + 2
-            window.SetTimeout "UpdateProgress", 100 
+            window.SetTimeout "UpdateProgress", 100
         Else
             ShowError
         End If
@@ -171,11 +170,11 @@
     </div>
 
     <div id="joke_screen" style="display:none; text-align:center;">
-        <h1>😜 JUST A JOKE!</h1>
+        <h1 style="margin-top: 40px;">😜 JUST A JOKE!</h1>
         <p>No virus found. You've been pranked!</p>
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueW8wd29ueXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif" width="200">
-        <div class="btn-row">
-            <button class="btn-primary" style="background:#4CAF50;" onclick="window.close()">Finish & Close</button>
+        <img src="https://i.giphy.com/3o7TKVUn7iM8FMEU24.gif" width="200" style="border-radius: 10px; margin-bottom: 20px;">
+        <div>
+            <button class="btn-primary" style="background:#4CAF50; width: 200px; padding: 15px;" onclick="window.close()">Finish & Close</button>
         </div>
     </div>
 </div>
