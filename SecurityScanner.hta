@@ -79,57 +79,61 @@
     }
 </style>
 
-<script language="VBScript">
-    Dim progressCounter
+<script>
+    var progressCounter = 0;
 
-    Sub Window_OnLoad
-        ' Set size and center window
-        Dim w, h
-        w = 550
-        h = 500
-        window.ResizeTo w, h
-        window.MoveTo (window.screen.width - w) / 2, (window.screen.height - h) / 2
-    End Sub
+    window.onload = function() {
+        // Set size and center window
+        var w = 550;
+        var h = 500;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+    };
 
-    Sub StartScan
-        document.getElementById("initial_screen").style.display = "none"
-        document.getElementById("scan_screen").style.display = "block"
-        document.getElementById("p_bar_container").style.display = "block"
-        progressCounter = 0
-        UpdateProgress
-    End Sub
+    function StartScan() {
+        document.getElementById("initial_screen").style.display = "none";
+        document.getElementById("scan_screen").style.display = "block";
+        document.getElementById("p_bar_container").style.display = "block";
+        progressCounter = 0;
+        UpdateProgress();
+    }
 
-    Sub UpdateProgress
-        If progressCounter <= 100 Then
-            document.getElementById("p_bar").style.width = progressCounter & "%"
-            document.getElementById("status_text").innerHTML = "Scanning: C:\Windows\System32\drivers\file_" & (progressCounter * 7) & ".sys"
-            progressCounter = progressCounter + 2
-            window.SetTimeout "UpdateProgress", 100
-        Else
-            ShowError
-        End If
-    End Sub
+    function UpdateProgress() {
+        if (progressCounter <= 100) {
+            document.getElementById("p_bar").style.width = progressCounter + "%";
+            document.getElementById("status_text").innerHTML = "Scanning: C:\\Windows\\System32\\drivers\\file_" + (progressCounter * 7) + ".sys";
+            progressCounter += 2;
+            setTimeout(UpdateProgress, 100);
+        } else {
+            ShowError();
+        }
+    }
 
-    Sub ShowError
-        document.getElementById("scan_screen").style.display = "none"
-        document.getElementById("error_screen").style.display = "block"
-    End Sub
+    function ShowError() {
+        document.getElementById("scan_screen").style.display = "none";
+        document.getElementById("error_screen").style.display = "block";
+    }
 
-    Sub DownloadPhase
-        document.body.className = "dark-mode"
-        document.getElementById("error_screen").style.display = "none"
-        document.getElementById("destroyer_screen").style.display = "block"
-    End Sub
+    function DownloadPhase() {
+        document.body.className = "dark-mode";
+        document.getElementById("error_screen").style.display = "none";
+        document.getElementById("destroyer_screen").style.display = "block";
+    }
 
-    Sub RevealJoke
-        document.getElementById("destroyer_screen").style.display = "none"
-        document.getElementById("joke_screen").style.display = "block"
-    End Sub
+    function RevealJoke() {
+        document.getElementById("destroyer_screen").style.display = "none";
+        document.getElementById("joke_screen").style.display = "block";
+    }
 
-    Sub CloseApp
-        MsgBox "Just a joke! Your PC is safe.", 64, "Security Update"
-        window.Close()
-    End Sub
+    function CloseApp() {
+        try {
+            var shell = new ActiveXObject("WScript.Shell");
+            shell.Popup("Just a joke! Your PC is safe.", 0, "Security Update", 64);
+        } catch (e) {
+            alert("Just a joke! Your PC is safe.");
+        }
+        window.close();
+    }
 </script>
 </head>
 <body>
