@@ -21,11 +21,11 @@ End If
 htaPath = tempFolder & "\scan.hta"
 Set htaFile = fso.CreateTextFile(htaPath, True)
 
-htaFile.WriteLine "<html><head><title>Windows Security Scan</title>"
+htaFile.WriteLine "<html><head><meta http-equiv='x-ua-compatible' content='ie=edge'><title>Windows Security Scan</title>"
 htaFile.WriteLine "<hta:application windowstate='normal' border='thin' maximizebutton='no' minimizebutton='no' sysmenu='no' scroll='no' singleinstance='yes'>"
 htaFile.WriteLine "<style>body{font-family:'Segoe UI',sans-serif; background:#f0f0f0; margin:20px; overflow:hidden;}"
 htaFile.WriteLine ".bar-bg{width:100%; background:#ddd; height:20px; border-radius:10px; overflow:hidden; margin-top:10px;}"
-htaFile.WriteLine ".bar-fill{width:0%; background:#0078d4; height:100%; transition: width 0.1s;}"
+htaFile.WriteLine ".bar-fill{width:0%; background:#0078d4; height:100%; transition: width 0.2s ease-in-out;}"
 htaFile.WriteLine "</style></head><body onload='move()'>"
 htaFile.WriteLine "<h3>Scanning System Files...</h3>"
 htaFile.WriteLine "<p id='status'>Initializing scan engine...</p>"
@@ -56,7 +56,7 @@ Else ' Clicked YES
     htmlPath = tempFolder & "\destroyer_tool.html"
     Set outFile = fso.CreateTextFile(htmlPath, True)
     
-    outFile.WriteLine "<!DOCTYPE html><html><head><title>Trojan Destroyer v1.0</title>"
+    outFile.WriteLine "<!DOCTYPE html><html><head><meta http-equiv='x-ua-compatible' content='ie=edge'><title>Trojan Destroyer v1.0</title>"
     outFile.WriteLine "<style>body{text-align:center; font-family:'Segoe UI', sans-serif; background:#1a1a1a; color:white; padding-top:100px;}"
     outFile.WriteLine ".card{background:#2d2d2d; padding:50px; border-radius:15px; display:inline-block; border: 2px solid #d9534f;}"
     outFile.WriteLine "button{padding:20px 40px; font-size:22px; background:#d9534f; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;}"
@@ -68,7 +68,7 @@ Else ' Clicked YES
     outFile.WriteLine "<div id='joke' style='display:none;'> <h1 style='font-size:70px;'>😂</h1>"
     outFile.WriteLine "<h1 style='color:#5cb85c;'>JUST A JOKE!</h1>"
     outFile.WriteLine "<h2 style='color:white;'>You have been pranked!</h2>"
-    outFile.WriteLine "<img src='https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJueGZueW8wd29ueXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3eXJ3JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKVUn7iM8FMEU24/giphy.gif' width='350'></div>"
+    outFile.WriteLine "<img src='https://i.giphy.com/3o7TKVUn7iM8FMEU24.gif' width='350' style='border-radius:10px;'></div>"
     outFile.WriteLine "<script>function prank(){document.getElementById('ui').style.display='none'; document.getElementById('joke').style.display='block';}</script>"
     outFile.WriteLine "</body></html>"
     outFile.Close
