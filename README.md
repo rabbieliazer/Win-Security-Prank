@@ -10,18 +10,19 @@ A professional-grade collection of security alert simulations. This library uses
 | <img src="https://simpleicons.org/icons/mcafee.svg" width="20" height="20"> | **McAfee** | `Active` | Custom Form (Red/White) |
 | <img src="https://simpleicons.org/icons/avast.svg" width="20" height="20"> | **Avast** | `Active` | Custom Form (Purple/Orange) |
 | <img src="https://simpleicons.org/icons/norton.svg" width="20" height="20"> | **Norton** | `Active` | Custom Form (Yellow/Black) |
+| <img src="https://simpleicons.org/icons/windows.svg" width="20" height="20"> | **Windows Security** | `Active` | HTA Application |
 | <img src="https://simpleicons.org/icons/windows.svg" width="20" height="20"> | **Windows System** | `Active` | Toast Notification |
 | <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Windows_logo_-_2012.svg" width="20" height="20"> | **Classic Windows** | `Active` | Native MessageBox |
 
 ## 🛠️ How It Works
-These scripts utilize a VBScript wrapper to execute PowerShell commands silently. 
-1. **Stealth**: No command prompt window appears during execution.
+These scripts utilize VBScript, PowerShell, and HTA (HTML Applications) to create realistic interfaces.
+1. **Stealth**: VBScript wrappers execute commands silently without visible terminal windows.
 2. **Topmost**: Windows are set to stay above all other applications.
 3. **Interaction**: Every script includes an action button that triggers the reveal.
 4. **The Reveal**: Regardless of the button clicked (including close), a final "Just a joke!" notice appears.
 
 ## 📂 Installation & Usage
-1. Download the `.vbs` file of your choice from this repository.
+1. Download the `.vbs` or `.hta` file of your choice from this repository.
 2. Double-click the file to execute the simulation.
 3. To terminate a script manually, end the `powershell.exe` process in **Task Manager**.
 
