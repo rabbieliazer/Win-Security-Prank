@@ -73,5 +73,12 @@ Else ' Clicked YES
     outFile.WriteLine "</body></html>"
     outFile.Close
     
-    shell.Run "explorer.exe " & htmlPath
+    ' Try to open with Chrome first, fallback to system default
+    On Error Resume Next
+    shell.Run "chrome.exe " & Chr(34) & htmlPath & Chr(34), 1, False
+    If Err.Number <> 0 Then
+        Err.Clear
+        shell.Run Chr(34) & htmlPath & Chr(34)
+    End If
+    On Error GoTo 0
 End If
