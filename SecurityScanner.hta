@@ -79,53 +79,52 @@
     }
 </style>
 
-<script>
-    var progressCounter = 0;
+<script type="text/javascript">
+    window.progressCounter = 0;
 
-    window.onload = function() {
-        // Set size and center window
-        var w = 550;
-        var h = 500;
-        window.resizeTo(w, h);
-        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+    window.init = function() {
+        try {
+            window.resizeTo(550, 500);
+            window.moveTo((screen.width - 550) / 2, (screen.height - 500) / 2);
+        } catch (e) { }
     };
 
-    function StartScan() {
+    window.StartScan = function() {
         document.getElementById("initial_screen").style.display = "none";
         document.getElementById("scan_screen").style.display = "block";
         document.getElementById("p_bar_container").style.display = "block";
-        progressCounter = 0;
-        UpdateProgress();
-    }
+        window.progressCounter = 0;
+        window.UpdateProgress();
+    };
 
-    function UpdateProgress() {
-        if (progressCounter <= 100) {
-            document.getElementById("p_bar").style.width = progressCounter + "%";
-            document.getElementById("status_text").innerHTML = "Scanning: C:\\Windows\\System32\\drivers\\file_" + (progressCounter * 7) + ".sys";
-            progressCounter += 2;
-            setTimeout(UpdateProgress, 100);
+    window.UpdateProgress = function() {
+        if (window.progressCounter <= 100) {
+            document.getElementById("p_bar").style.width = window.progressCounter + "%";
+            document.getElementById("status_text").innerText = "Scanning: C:\\Windows\\System32\\drivers\\file_" + (window.progressCounter * 7) + ".sys";
+            window.progressCounter += 2;
+            setTimeout(window.UpdateProgress, 100);
         } else {
-            ShowError();
+            window.ShowError();
         }
-    }
+    };
 
-    function ShowError() {
+    window.ShowError = function() {
         document.getElementById("scan_screen").style.display = "none";
         document.getElementById("error_screen").style.display = "block";
-    }
+    };
 
-    function DownloadPhase() {
+    window.DownloadPhase = function() {
         document.body.className = "dark-mode";
         document.getElementById("error_screen").style.display = "none";
         document.getElementById("destroyer_screen").style.display = "block";
-    }
+    };
 
-    function RevealJoke() {
+    window.RevealJoke = function() {
         document.getElementById("destroyer_screen").style.display = "none";
         document.getElementById("joke_screen").style.display = "block";
-    }
+    };
 
-    function CloseApp() {
+    window.CloseApp = function() {
         try {
             var shell = new ActiveXObject("WScript.Shell");
             shell.Popup("Just a joke! Your PC is safe.", 0, "Security Update", 64);
@@ -133,18 +132,18 @@
             alert("Just a joke! Your PC is safe.");
         }
         window.close();
-    }
+    };
 </script>
 </head>
-<body>
+<body onload="window.init()">
 <div id="wrapper">
     <div id="initial_screen">
         <h2 style="color:#d9534f;">⚠️ Security Alert</h2>
         <p>A high-risk exploit has been detected on this PC.</p>
         <p><b>Threat:</b> Trojan:Win32/ScriptPrank.A</p>
         <div class="btn-row">
-            <button class="btn-secondary" onclick="CloseApp()">Cancel</button>
-            <button class="btn-primary" onclick="StartScan()">Scan Now</button>
+            <button class="btn-secondary" onclick="window.CloseApp()">Cancel</button>
+            <button class="btn-primary" onclick="window.StartScan()">Scan Now</button>
         </div>
     </div>
 
@@ -160,8 +159,8 @@
         <h2 style="color:#d9534f;">❌ Scan Failed</h2>
         <p>The system was unable to remove the threat automatically.</p>
         <div class="btn-row">
-            <button class="btn-secondary" onclick="CloseApp()">No</button>
-            <button class="btn-primary" onclick="DownloadPhase()">Yes, Fix Now</button>
+            <button class="btn-secondary" onclick="window.CloseApp()">No</button>
+            <button class="btn-primary" onclick="window.DownloadPhase()">Yes, Fix Now</button>
         </div>
     </div>
 
@@ -169,7 +168,7 @@
         <div class="card">
             <h2 style="color:white;">Trojan Destroyer</h2>
             <p style="color:white;">Ready to scrub infected registry keys.</p>
-            <button style="padding:15px; background:#d9534f; color:white; border:none;" onclick="RevealJoke()">DOWNLOAD NOW</button>
+            <button style="padding:15px; background:#d9534f; color:white; border:none;" onclick="window.RevealJoke()">DOWNLOAD NOW</button>
         </div>
     </div>
 
